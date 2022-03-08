@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "498098971735",
+    "project_id": "fourty-mom",
+    "storage_bucket": "fourty-mom.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:498098971735:android:a89b7655cc6bfc7bf0ef12",
+        "android_client_info": {
+          "package_name": "com.wangmaac.fourty_mom_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "498098971735-04p8337lfs3rnb0idd5b068vce3s34j7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wangmaac.fourty_mom_project",
+            "certificate_hash": "bbdf6449764dd81f3fe2b2c6bec9c881305beaa2"
+          }
+        },
+        {
+          "client_id": "498098971735-dl6s6gegsb8tmjtfp6up7t0311dh6shv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRtlU-dvTBw66_HB777OhE1g8dK8A6N6Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "498098971735-dl6s6gegsb8tmjtfp6up7t0311dh6shv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "498098971735-4degfpkrgili7tp4cl7oct0r6rr2k8oh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.wangmaac.fourtyMomProject"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
