@@ -5,6 +5,7 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:fourty_mom_project/utilities/color.dart';
 import 'package:fourty_mom_project/widget/tabbar_widget.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 import '../utilities/tab_data.dart';
 
@@ -40,6 +41,13 @@ class _InitPageState extends State<InitPage>
 
   @override
   Widget build(BuildContext context) {
+    const colorizeColors = [
+      Colors.purple,
+      Colors.blue,
+      Colors.yellow,
+      Colors.red,
+    ];
+
     return WillPopScope(
       onWillPop: onWillPop,
       child: Scaffold(
@@ -54,6 +62,43 @@ class _InitPageState extends State<InitPage>
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Padding(
+                    padding: const EdgeInsets.only(bottom:18.0, right: 10),
+                    child: DefaultTextStyle(
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 16.0,
+                        color: Colors.black
+                      ),
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          FadeAnimatedText('반갑습니다.',),
+                          FadeAnimatedText('${_firebaseAuth.currentUser!.displayName}님 '),
+                          FadeAnimatedText('매일매일 작성하는게 제일 중요합니다.'),
+                          WavyAnimatedText('${_firebaseAuth.currentUser!.displayName}님'),
+                        ],
+                        pause: const Duration(milliseconds: 500),
+                        displayFullTextOnTap: true,
+
+                        isRepeatingAnimation: false,
+
+                      ),
+                    ),
+                  ),
+                 /* AnimatedTextKit(
+                    animatedTexts: [
+                      RotateAnimatedText('AWESOME'),
+                      RotateAnimatedText('OPTIMISTIC'),
+                      RotateAnimatedText(
+                        'DIFFERENT',
+                        textStyle: const TextStyle(
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ],
+                    isRepeatingAnimation: true,
+                    totalRepeatCount: 10,
+                  ),*/
+                  Padding(
                     padding: const EdgeInsets.only(right: 10.0, bottom: 8.0),
                     child: GestureDetector(
                       onTap: () {
@@ -62,7 +107,7 @@ class _InitPageState extends State<InitPage>
                             barrierDismissible: false,
                             builder: (BuildContext ctx) {
                               return AlertDialog(
-                                content: const Text('LOGOUT?'),
+                                content: const Text('로그아웃'),
                                 actions: [
                                   OutlinedButton(
                                     child: const Text(

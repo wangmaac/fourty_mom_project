@@ -85,8 +85,14 @@ class _TimeLinePageState extends State<TimeLinePage> {
   }
 
   Widget unSelectBox({Widget? child, Color? color, required int index}) {
-    return roundRectangleContainer(
-        color: color, child: child, width: 100, index: index);
+    return Transform.scale(
+      scale: 1,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5.0),
+        child: roundRectangleContainer(
+            color: color, child: child, width: 100, index: index),
+      ),
+    );
   }
 
   /*
