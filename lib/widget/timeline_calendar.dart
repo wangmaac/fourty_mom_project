@@ -81,15 +81,12 @@ class _TimeLinePageState extends State<TimeLinePage> {
 
   Widget selectBox({Widget? child, Color? color, required int index}) {
     return roundRectangleContainer(
-        color: color, width: 150, child: child, index: index);
+        color: color, width: 100, child: child, index: index);
   }
 
   Widget unSelectBox({Widget? child, Color? color, required int index}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 15.0),
-      child: roundRectangleContainer(
-          color: color, child: child, width: 120, index: index),
-    );
+    return roundRectangleContainer(
+        color: color, child: child, width: 100, index: index);
   }
 
   /*
@@ -108,9 +105,9 @@ class _TimeLinePageState extends State<TimeLinePage> {
         width: width,
         child: child,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(width: 7, color: Colors.grey),
-            color: color ??= Colors.white),
+          border: Border.all(width: 2, color: color ??= Colors.grey),
+          //    color: color ??= Colors.white
+        ),
       ),
     );
   }

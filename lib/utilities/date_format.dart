@@ -6,8 +6,20 @@ final DateFormat _dateFormat = DateFormat.MMMd();
 
 final DateFormat _eDateFormat = DateFormat.MEd();
 
+final DateFormat _mmmDateFormat = DateFormat.MMM(); //영어 월
+
+final DateFormat _dDateFormat = DateFormat.d(); //일자
+
+final DateFormat _mDateFormat = DateFormat.E(); //요일
+
 DateFormat get dateFormat => _dateFormat;
 
+DateFormat get mmmDateFormat => _mmmDateFormat;
+
 DateFormat get eDateFormat => _eDateFormat;
+
+DateFormat get dDateFormat => _dDateFormat;
+
+DateFormat get mDateFormat => _mDateFormat;
 
 int get timeLineItemCount => _timeLineItemCount;
