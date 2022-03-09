@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:fourty_mom_project/utilities/icon_data.dart';
 
-List<NavigationRailDestination> destination = const [
-  NavigationRailDestination(
+List<NavigationRailDestination> destination = [
+  const NavigationRailDestination(
     selectedIcon: FaIcon(
       FontAwesomeIcons.kissWinkHeart,
       color: Colors.black,
@@ -17,48 +18,18 @@ List<NavigationRailDestination> destination = const [
     ),
   ),
   NavigationRailDestination(
-    selectedIcon: ImageIcon(
-      AssetImage('images/icons/book_icon.png'),
-      size: 30,
-      color: Colors.black,
-    ),
-    icon: ImageIcon(
-      AssetImage('images/icons/book_icon.png'),
-      size: 30,
-      color: Colors.grey,
-    ),
-    label: Text(
-      'Reading',
-    ),
+    selectedIcon: readingIcon(30, true),
+    icon: readingIcon(30, false),
+    label: const Text('Reading'),
   ),
   NavigationRailDestination(
-    selectedIcon: ImageIcon(
-      AssetImage('images/icons/video_icon.png'),
-      size: 30,
-      color: Colors.black,
-    ),
-    icon: ImageIcon(
-      AssetImage('images/icons/video_icon.png'),
-      size: 30,
-      color: Colors.grey,
-    ),
-    label: Text(
-      'Video',
-    ),
+    selectedIcon: videoIcon(30, true),
+    icon: videoIcon(30, false),
+    label: const Text('Video'),
   ),
   NavigationRailDestination(
-    selectedIcon: ImageIcon(
-      AssetImage('images/icons/music_icon.png'),
-      size: 30,
-      color: Colors.black,
-    ),
-    icon: ImageIcon(
-      AssetImage('images/icons/music_icon.png'),
-      size: 30,
-      color: Colors.grey,
-    ),
-    label: Text(
-      'Listening',
-    ),
+    selectedIcon: listeningIcon(30, true),
+    icon: listeningIcon(30, false),
+    label: const Text('Listening'),
   ),
 ];

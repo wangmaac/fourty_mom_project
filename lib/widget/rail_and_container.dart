@@ -47,21 +47,7 @@ class _RailContainerState extends State<RailContainer> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                 ),
-                child: const EntirePage()
-                /*Center(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                        'baseDate: ${context.watch<DateController>().getBaseDate}'),
-                    Text(
-                        'baseDate: ${context.watch<DateController>().getSelectDate}'),
-                    Text('baseDate: ${context.watch<RWLController>().getRWL}'),
-                  ],
-                ),
-              ),*/
-                ),
+                child: const EntirePage()),
           )
         ],
       ),
