@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fourty_mom_project/controller/date_controller.dart';
 import 'package:fourty_mom_project/controller/rwl_controller.dart';
+import 'package:fourty_mom_project/controller/welcome_text_controller.dart';
 import 'package:fourty_mom_project/utilities/router.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +19,8 @@ class MyApp extends StatelessWidget {
             create: (context) => RWLController()),
         ChangeNotifierProvider<DateController>(
             create: (context) => DateController()),
+        ChangeNotifierProvider<WelcomeTextController>(
+            create: (context) => WelcomeTextController(true)),
       ],
       child: MaterialApp.router(
           //scrollBehavior: MyBehavior(),

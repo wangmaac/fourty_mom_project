@@ -1,11 +1,15 @@
+import 'dart:async';
+
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:fourty_mom_project/controller/welcome_text_controller.dart';
 import 'package:fourty_mom_project/utilities/color.dart';
 import 'package:fourty_mom_project/widget/tabbar_widget.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:provider/provider.dart';
 
 import '../utilities/tab_data.dart';
 
@@ -29,6 +33,7 @@ class _InitPageState extends State<InitPage>
   void initState() {
     _firebaseAuth = FirebaseAuth.instance;
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     _tabController = TabController(length: TabPairs.length, vsync: this);
     super.initState();
   }
@@ -41,13 +46,6 @@ class _InitPageState extends State<InitPage>
 
   @override
   Widget build(BuildContext context) {
-    const colorizeColors = [
-      Colors.purple,
-      Colors.blue,
-      Colors.yellow,
-      Colors.red,
-    ];
-
     return WillPopScope(
       onWillPop: onWillPop,
       child: Scaffold(
@@ -62,42 +60,13 @@ class _InitPageState extends State<InitPage>
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(bottom:18.0, right: 10),
+                    padding: const EdgeInsets.only(bottom: 18.0, right: 10),
                     child: DefaultTextStyle(
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.black
-                      ),
-                      child: AnimatedTextKit(
-                        animatedTexts: [
-                          FadeAnimatedText('반갑습니다.',),
-                          FadeAnimatedText('${_firebaseAuth.currentUser!.displayName}님 '),
-                          FadeAnimatedText('매일매일 작성하는게 제일 중요합니다.'),
-                          WavyAnimatedText('${_firebaseAuth.currentUser!.displayName}님'),
-                        ],
-                        pause: const Duration(milliseconds: 500),
-                        displayFullTextOnTap: true,
-
-                        isRepeatingAnimation: false,
-
-                      ),
-                    ),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontSize: 16.0, color: Colors.black),
+                        child: howTextWidget(_firebaseAuth.currentUser!)),
                   ),
-                 /* AnimatedTextKit(
-                    animatedTexts: [
-                      RotateAnimatedText('AWESOME'),
-                      RotateAnimatedText('OPTIMISTIC'),
-                      RotateAnimatedText(
-                        'DIFFERENT',
-                        textStyle: const TextStyle(
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
-                    ],
-                    isRepeatingAnimation: true,
-                    totalRepeatCount: 10,
-                  ),*/
                   Padding(
                     padding: const EdgeInsets.only(right: 10.0, bottom: 8.0),
                     child: GestureDetector(
@@ -161,5 +130,39 @@ class _InitPageState extends State<InitPage>
       return false;
     }
     return true;
+  }
+
+  Widget howTextWidget(User user) {
+    if (context.watch<WelcomeTextController>().getShow) {
+      return AnimatedTextKit(
+        key: const ValueKey(1),
+        animatedTexts: [
+          FadeAnimatedText(
+            '반갑습니다. ${user.displayName}님',
+          ),
+          FadeAnimatedText('매일매일 응원합니다.'),
+        ],
+        pause: const Duration(milliseconds: 1000),
+        isRepeatingAnimation: false,
+        onFinished: () {
+          Provider.of<WelcomeTextController>(context, listen: false)
+              .setShowEntireText(false);
+        },
+      );
+    } else {
+      return AnimatedTextKit(
+        key: const ValueKey(2),
+        animatedTexts: [
+          WavyAnimatedText(
+            '${user.displayName}님',
+            speed: const Duration(milliseconds: 500),
+          ),
+        ],
+        pause: const Duration(milliseconds: 1000),
+        totalRepeatCount: 1,
+        isRepeatingAnimation: true,
+        //repeatForever: true,
+      );
+    }
   }
 }

@@ -5,7 +5,6 @@ import 'package:scroll_to_index/scroll_to_index.dart';
 
 import '../utilities/color.dart';
 import '../utilities/date_format.dart';
-import '../utilities/logger.dart';
 import '../utilities/scroll_behavior.dart';
 import '../utilities/scroll_controller.dart';
 import 'timeline_content_widget.dart';
@@ -64,11 +63,11 @@ class _TimeLinePageState extends State<TimeLinePage> {
                     child: context.watch<DateController>().getSelectDate ==
                             itemDate
                         ? selectBox(
-                            child: selectContent(itemDate),
+                            child: calendarContent(itemDate),
                             color: selectIconColor,
                             index: index)
                         : unSelectBox(
-                            index: index, child: unSelectContent(itemDate)),
+                            index: index, child: calendarContent(itemDate)),
                   );
                 },
               ),
