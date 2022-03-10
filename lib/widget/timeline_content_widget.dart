@@ -9,7 +9,7 @@ Widget calendarContent(DateTime itemDate) {
   List<Map<String, dynamic>> result = [];
   late Widget resultSubIconList;
 
-  //선택한 json schedule
+//선택한 json schedule
   result =
       List.of(tmpListModel.where((element) => itemDate == element['date']));
 
@@ -90,6 +90,7 @@ Widget iconBorder({Widget? child}) {
   } else {
     return Container(
       decoration: BoxDecoration(
+        color: Colors.green,
         border: Border.all(width: 1, color: Colors.black),
         borderRadius: BorderRadius.circular(3),
       ),

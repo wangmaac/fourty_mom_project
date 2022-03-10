@@ -49,6 +49,7 @@ dependencies:
   flutter_facebook_auth: ^4.1.1
   freezed_annotation: ^1.1.0
   animated_text_kit: ^4.2.1
+  dropdown_below: ^1.0.3
 
 dev_dependencies:
   flutter_test:

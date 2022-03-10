@@ -27,6 +27,8 @@ class _InitPageState extends State<InitPage>
   late FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
+  late FocusScopeNode currentFocus;
+
   DateTime? backButtonPressedTime;
 
   @override
@@ -39,9 +41,15 @@ class _InitPageState extends State<InitPage>
   }
 
   @override
+  void didChangeDependencies() {
+    currentFocus = FocusScope.of(context);
+    super.didChangeDependencies();
+  }
+
+  @override
   void dispose() {
-    super.dispose();
     _tabController.dispose();
+    super.dispose();
   }
 
   @override
@@ -114,7 +122,7 @@ class _InitPageState extends State<InitPage>
               ),
             ),
           ),
-          body: SafeArea(child: myTabBar(_tabController))),
+          body: SafeArea(child: myTabBar(_tabController, currentFocus))),
     );
   }
 
@@ -126,7 +134,7 @@ class _InitPageState extends State<InitPage>
     if (backButton) {
       backButtonPressedTime = currentTime;
       ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('2번 누리면 종료')));
+          .showSnackBar(const SnackBar(content: Text('2번 누르면 종료')));
       return false;
     }
     return true;

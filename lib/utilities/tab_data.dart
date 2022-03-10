@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../screens/intro_page.dart';
+import '../screens/write_page.dart';
 
 class TabPair {
   final Tab tab;
@@ -19,15 +20,8 @@ List<TabPair> TabPairs = [
       text: '쓰기',
     ),
     view: Center(
-      // replace with your own widget here
-      child: Text(
-        '쓰기 페이지',
-        style: TextStyle(
-          fontSize: 25,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-    ),
+        // replace with your own widget here
+        child: WritePage()),
   ),
   TabPair(
     tab: Tab(

@@ -12,27 +12,60 @@ class EntirePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(),
-          Center(
-            child: Text(
-              eDateFormat.format(context.watch<DateController>().getSelectDate),
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: MediaQuery.of(context).size.width * 0.05),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(),
+            Center(
+              child: Text(
+                eDateFormat
+                    .format(context.watch<DateController>().getSelectDate),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: MediaQuery.of(context).size.width * 0.05),
+              ),
             ),
-          ),
-          /*Text(context.watch<RWLController>().getRWL.toString()),*/
-          Text('Reading'),
-          Text('title\n'),
-          Text('Watching'),
-          Text('title\n'),
-          Text('Listening'),
-          Text('title'),
-        ],
+            /*Text(context.watch<RWLController>().getRWL.toString()),*/
+            Text('Reading'),
+            Text('title\n'),
+            Text('Watching'),
+            Text('title\n'),
+            Text('Listening'),
+            Text('title'),
+            Text('Reading'),
+            Text('title\n'),
+            Text('Watching'),
+            Text('title\n'),
+            Text('Listening'),
+            Text('title'),
+            Text('Reading'),
+            Text('title\n'),
+            Text('Watching'),
+            Text('title\n'),
+            Text('Listening'),
+            Text('title'),
+            Text('Reading'),
+            Text('title\n'),
+            Text('Watching'),
+            Text('title\n'),
+            Text('Listening'),
+            Text('title'),
+            Text('Reading'),
+            Text('title\n'),
+            Text('Watching'),
+            Text('title\n'),
+            Text('Listening'),
+            Text('title'),
+            Text('Reading'),
+            Text('title\n'),
+            Text('Watching'),
+            Text('title\n'),
+            Text('Listening'),
+            Text('title'),
+          ],
+        ),
       ),
     );
   }
