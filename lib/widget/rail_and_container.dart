@@ -21,11 +21,14 @@ class _RailContainerState extends State<RailContainer> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraint) {
+      print(constraint.maxHeight);
+      print(constraint.minHeight);
       return SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(minHeight: constraint.maxHeight),
           child: IntrinsicHeight(
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 NavigationRail(
                   groupAlignment: 0.0,
@@ -38,12 +41,13 @@ class _RailContainerState extends State<RailContainer> {
                   destinations: destination,
                 ),
                 const VerticalDivider(thickness: 1, width: 1),
-                Expanded(child: Container(
-                    margin: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: const EntirePage()))
+                Expanded(
+                    child: Container(
+                        margin: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: const EntirePage()))
               ],
             ),
           ),

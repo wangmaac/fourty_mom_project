@@ -54,75 +54,82 @@ class _InitPageState extends State<InitPage>
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: onWillPop,
-      child: Scaffold(
-          backgroundColor: backgroundColor,
-          appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(kToolbarHeight),
-            child: Container(
-              constraints: const BoxConstraints(
-                  minWidth: double.infinity, minHeight: double.infinity),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 18.0, right: 10),
-                    child: DefaultTextStyle(
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            fontSize: 16.0, color: Colors.black),
-                        child: howTextWidget(_firebaseAuth.currentUser!)),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10.0, bottom: 8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        showDialog(
-                            context: context,
-                            barrierDismissible: false,
-                            builder: (BuildContext ctx) {
-                              return AlertDialog(
-                                content: const Text('로그아웃'),
-                                actions: [
-                                  OutlinedButton(
-                                    child: const Text(
-                                      'yes',
-                                      style: TextStyle(color: Colors.black),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                      _googleSignIn.signOut();
-                                      _firebaseAuth.signOut();
-                                      FacebookAuth.instance.logOut();
-                                    },
-                                  ),
-                                  OutlinedButton(
-                                    child: const Text(
-                                      'no',
-                                      style: TextStyle(color: Colors.grey),
-                                    ),
-                                    onPressed: () =>
-                                        Navigator.of(context).pop(),
-                                  )
-                                ],
-                              );
-                            });
-                      },
-                      child: CircleAvatar(
-                        backgroundImage:
-                            NetworkImage(_firebaseAuth.currentUser!.photoURL!),
-                        maxRadius: 20,
-                        backgroundColor: Colors.white,
-                      ),
+    return GestureDetector(
+      onTap: () {
+        if (currentFocus.hasFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: WillPopScope(
+        onWillPop: onWillPop,
+        child: Scaffold(
+            backgroundColor: backgroundColor,
+            appBar: PreferredSize(
+              preferredSize: const Size.fromHeight(kToolbarHeight),
+              child: Container(
+                constraints: const BoxConstraints(
+                    minWidth: double.infinity, minHeight: double.infinity),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 18.0, right: 10),
+                      child: DefaultTextStyle(
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontSize: 16.0, color: Colors.black),
+                          child: howTextWidget(_firebaseAuth.currentUser!)),
                     ),
-                  )
-                ],
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10.0, bottom: 8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          showDialog(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (BuildContext ctx) {
+                                return AlertDialog(
+                                  content: const Text('로그아웃'),
+                                  actions: [
+                                    OutlinedButton(
+                                      child: const Text(
+                                        'yes',
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                        _googleSignIn.signOut();
+                                        _firebaseAuth.signOut();
+                                        FacebookAuth.instance.logOut();
+                                      },
+                                    ),
+                                    OutlinedButton(
+                                      child: const Text(
+                                        'no',
+                                        style: TextStyle(color: Colors.grey),
+                                      ),
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(),
+                                    )
+                                  ],
+                                );
+                              });
+                        },
+                        child: CircleAvatar(
+                          backgroundImage: NetworkImage(
+                              _firebaseAuth.currentUser!.photoURL!),
+                          maxRadius: 20,
+                          backgroundColor: Colors.white,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-          body: SafeArea(child: myTabBar(_tabController, currentFocus))),
+            body: SafeArea(child: myTabBar(_tabController, currentFocus))),
+      ),
     );
   }
 

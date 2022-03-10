@@ -27,6 +27,7 @@ class _WritePageState extends State<WritePage> {
   void initState() {
     _dropdownTestItems = buildDropdownTestItems(_testList);
     _textEditingController = TextEditingController();
+    print('write initState');
     super.initState();
   }
 
@@ -41,6 +42,12 @@ class _WritePageState extends State<WritePage> {
       );
     }
     return items;
+  }
+
+  @override
+  void dispose() {
+    print('write dispose');
+    super.dispose();
   }
 
   @override
@@ -83,7 +90,7 @@ class _WritePageState extends State<WritePage> {
                   OutlineInputBorder(borderRadius: BorderRadius.circular(0))),
         )),
         const SizedBox(
-          height: 5,
+          height: 8,
         ),
         /*const SizedBox(height: 100),*/
         OutlinedButton(
@@ -102,7 +109,7 @@ class _WritePageState extends State<WritePage> {
                 ),
               ),
               width: double.infinity,
-              height: 50,
+              height: 45,
             ))
       ],
     ));
