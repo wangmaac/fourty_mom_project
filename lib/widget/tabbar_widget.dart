@@ -31,6 +31,9 @@ Widget myTabBar(TabController _tabController, FocusScopeNode focus) {
                 labelColor: Colors.white,
                 onTap: (i) {
                   focus.unfocus();
+                  if (i == 1) {
+                    print('click write tab');
+                  }
                 },
                 unselectedLabelColor: Colors.black,
                 tabs: TabPairs.map((tabPair) => tabPair.tab).toList()),

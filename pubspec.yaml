@@ -50,6 +50,7 @@ dependencies:
   freezed_annotation: ^1.1.0
   animated_text_kit: ^4.2.1
   dropdown_below: ^1.0.3
+  cloud_firestore: ^3.1.10
 
 dev_dependencies:
   flutter_test:

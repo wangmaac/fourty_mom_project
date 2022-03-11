@@ -21,8 +21,6 @@ class _RailContainerState extends State<RailContainer> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraint) {
-      print(constraint.maxHeight);
-      print(constraint.minHeight);
       return SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(minHeight: constraint.maxHeight),

@@ -5,12 +5,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:fourty_mom_project/controller/date_controller.dart';
 import 'package:fourty_mom_project/controller/welcome_text_controller.dart';
 import 'package:fourty_mom_project/utilities/color.dart';
 import 'package:fourty_mom_project/widget/tabbar_widget.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
+import '../utilities/date_format.dart';
 import '../utilities/tab_data.dart';
 
 class InitPage extends StatefulWidget {
@@ -73,6 +75,16 @@ class _InitPageState extends State<InitPage>
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 15.0, left: 20),
+                      child: DefaultTextStyle(
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontSize: 20.0, color: Colors.grey),
+                          child: Text(dateFormat.format(
+                              context.watch<DateController>().getSelectDate))),
+                    ),
+                    Spacer(),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 18.0, right: 10),
                       child: DefaultTextStyle(
