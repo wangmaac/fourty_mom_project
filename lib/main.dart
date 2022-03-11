@@ -1,5 +1,5 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fourty_mom_project/controller/date_controller.dart';
 import 'package:fourty_mom_project/controller/rwl_controller.dart';
 import 'package:fourty_mom_project/controller/welcome_text_controller.dart';
@@ -24,6 +24,18 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp.router(
           //scrollBehavior: MyBehavior(),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          /*[
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],*/
+          supportedLocales: AppLocalizations.supportedLocales,
+          /*const [
+            Locale('ko', ''),
+            Locale('en', '')
+          ],*/
           debugShowCheckedModeBanner: false,
           routeInformationParser: MyRouter().value.routeInformationParser,
           routerDelegate: MyRouter().value.routerDelegate),
