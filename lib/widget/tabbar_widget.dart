@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../utilities/color.dart';
 import '../utilities/tab_data.dart';
 
-Widget myTabBar(TabController _tabController, FocusScopeNode focus) {
+Widget myTabBar(
+    TabController _tabController, FocusScopeNode focus, BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Column(

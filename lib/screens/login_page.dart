@@ -1,13 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+//import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fourty_mom_project/classes/facebook_login_class.dart';
 import 'package:fourty_mom_project/classes/firebase_class.dart';
 import 'package:fourty_mom_project/classes/google_login_class.dart';
 import 'package:fourty_mom_project/screens/init_page.dart';
-
-import '../utilities/logger.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -41,6 +39,10 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    //logger.d(context.read<MyLocalizationController>().locale);
+/*    context.watch<MyLocalizationController>().setLocal('en');
+    logger.d('next' + context.read<MyLocalizationController>().local);*/
+
     if (_initialized) {
       return Scaffold(
         body: StreamBuilder(
@@ -67,8 +69,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               );
             } else {
-              logger.d(AppLocalizations.of(context)!.appTitle);
-              logger.d(AppLocalizations.of(context)!.localeName);
+              //logger.d(AppLocalizations.of(context)!.appTitle);
+              //logger.d(AppLocalizations.of(context)!.localeName);
               return const InitPage();
             }
           },

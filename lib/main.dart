@@ -6,6 +6,8 @@ import 'package:fourty_mom_project/controller/welcome_text_controller.dart';
 import 'package:fourty_mom_project/utilities/router.dart';
 import 'package:provider/provider.dart';
 
+import 'controller/localization_controller.dart';
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -21,24 +23,19 @@ class MyApp extends StatelessWidget {
             create: (context) => DateController()),
         ChangeNotifierProvider<WelcomeTextController>(
             create: (context) => WelcomeTextController(true)),
+        ChangeNotifierProvider<MyLocalizationController>(
+            create: (context) => MyLocalizationController()),
       ],
-      child: MaterialApp.router(
-          //scrollBehavior: MyBehavior(),
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          /*[
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],*/
-          supportedLocales: AppLocalizations.supportedLocales,
-          /*const [
-            Locale('ko', ''),
-            Locale('en', '')
-          ],*/
-          debugShowCheckedModeBanner: false,
-          routeInformationParser: MyRouter().value.routeInformationParser,
-          routerDelegate: MyRouter().value.routerDelegate),
+      child: Consumer<MyLocalizationController>(
+        builder: (context, provider, child) => MaterialApp.router(
+            //scrollBehavior: MyBehavior(),
+            locale: Provider.of<MyLocalizationController>(context).getLocale,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            debugShowCheckedModeBanner: false,
+            routeInformationParser: MyRouter().value.routeInformationParser,
+            routerDelegate: MyRouter().value.routerDelegate),
+      ),
     );
   }
 }

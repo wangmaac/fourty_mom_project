@@ -1,3 +1,6 @@
 {
-  "appTitle": "컴퓨터 과학의 영웅"
+  "appTitle": "컴퓨터 과학의 영웅",
+  "intro" : "인트로",
+  "white" : "쓰기",
+  "statistics" : "통계"
 }

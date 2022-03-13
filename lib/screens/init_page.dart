@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:fourty_mom_project/controller/date_controller.dart';
+import 'package:fourty_mom_project/controller/localization_controller.dart';
 import 'package:fourty_mom_project/controller/welcome_text_controller.dart';
 import 'package:fourty_mom_project/utilities/color.dart';
 import 'package:fourty_mom_project/widget/tabbar_widget.dart';
@@ -56,6 +57,8 @@ class _InitPageState extends State<InitPage>
 
   @override
   Widget build(BuildContext context) {
+    print(context.watch<MyLocalizationController>().getLocale);
+
     return GestureDetector(
       onTap: () {
         if (currentFocus.hasFocus) {
@@ -140,7 +143,8 @@ class _InitPageState extends State<InitPage>
                 ),
               ),
             ),
-            body: SafeArea(child: myTabBar(_tabController, currentFocus))),
+            body: SafeArea(
+                child: myTabBar(_tabController, currentFocus, context))),
       ),
     );
   }

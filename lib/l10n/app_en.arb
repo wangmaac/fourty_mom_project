@@ -1,3 +1,6 @@
 {
-  "appTitle": "Heroes of Computer Science"
+  "appTitle": "Heroes of Computer Science",
+  "intro" : "intro",
+  "write" : "write",
+  "statistics" : "statistics"
 }
