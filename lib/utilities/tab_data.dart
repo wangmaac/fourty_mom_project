@@ -17,7 +17,7 @@ List<TabPair> TabPairs = [
       view: IntroPage()),
   TabPair(
     tab: Tab(
-      text: '쓰기',
+      text: 'Write',
     ),
     view: Center(
         // replace with your own widget here
@@ -25,7 +25,7 @@ List<TabPair> TabPairs = [
   ),
   TabPair(
     tab: Tab(
-      text: '통계',
+      text: 'Statistics',
     ),
     view: Center(
       child: Text(
