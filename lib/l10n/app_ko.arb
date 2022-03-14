@@ -2,5 +2,8 @@
   "appTitle": "컴퓨터 과학의 영웅",
   "intro" : "인트로",
   "white" : "쓰기",
-  "statistics" : "통계"
+  "statistics" : "통계",
+  "hello" : "매우 반갑습니다.",
+  "korean" : "한국어",
+  "english" : "영어"
 }

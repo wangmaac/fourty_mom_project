@@ -4,17 +4,15 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:fourty_mom_project/controller/date_controller.dart';
-import 'package:fourty_mom_project/controller/localization_controller.dart';
 import 'package:fourty_mom_project/controller/welcome_text_controller.dart';
 import 'package:fourty_mom_project/utilities/color.dart';
 import 'package:fourty_mom_project/widget/tabbar_widget.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
 import '../utilities/date_format.dart';
 import '../utilities/tab_data.dart';
+import 'drawer_page.dart';
 
 class InitPage extends StatefulWidget {
   const InitPage({Key? key}) : super(key: key);
@@ -28,11 +26,12 @@ class _InitPageState extends State<InitPage>
   late TabController _tabController;
 
   late FirebaseAuth _firebaseAuth;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   late FocusScopeNode currentFocus;
 
   DateTime? backButtonPressedTime;
+
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   @override
   void initState() {
@@ -57,8 +56,6 @@ class _InitPageState extends State<InitPage>
 
   @override
   Widget build(BuildContext context) {
-    print(context.watch<MyLocalizationController>().getLocale);
-
     return GestureDetector(
       onTap: () {
         if (currentFocus.hasFocus) {
@@ -68,6 +65,9 @@ class _InitPageState extends State<InitPage>
       child: WillPopScope(
         onWillPop: onWillPop,
         child: Scaffold(
+            key: _key,
+            drawerEnableOpenDragGesture: true,
+            drawer: const DrawerPage(),
             backgroundColor: backgroundColor,
             appBar: PreferredSize(
               preferredSize: const Size.fromHeight(kToolbarHeight),
@@ -87,7 +87,7 @@ class _InitPageState extends State<InitPage>
                           child: Text(dateFormat.format(
                               context.watch<DateController>().getSelectDate))),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 18.0, right: 10),
                       child: DefaultTextStyle(
@@ -100,36 +100,7 @@ class _InitPageState extends State<InitPage>
                       padding: const EdgeInsets.only(right: 10.0, bottom: 8.0),
                       child: GestureDetector(
                         onTap: () {
-                          showDialog(
-                              context: context,
-                              barrierDismissible: false,
-                              builder: (BuildContext ctx) {
-                                return AlertDialog(
-                                  content: const Text('로그아웃'),
-                                  actions: [
-                                    OutlinedButton(
-                                      child: const Text(
-                                        'yes',
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                        _googleSignIn.signOut();
-                                        _firebaseAuth.signOut();
-                                        FacebookAuth.instance.logOut();
-                                      },
-                                    ),
-                                    OutlinedButton(
-                                      child: const Text(
-                                        'no',
-                                        style: TextStyle(color: Colors.grey),
-                                      ),
-                                      onPressed: () =>
-                                          Navigator.of(context).pop(),
-                                    )
-                                  ],
-                                );
-                              });
+                          _key.currentState!.openDrawer();
                         },
                         child: CircleAvatar(
                           backgroundImage: NetworkImage(

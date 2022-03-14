@@ -29,7 +29,9 @@ class MyApp extends StatelessWidget {
       child: Consumer<MyLocalizationController>(
         builder: (context, provider, child) => MaterialApp.router(
             //scrollBehavior: MyBehavior(),
-            locale: Provider.of<MyLocalizationController>(context).getLocale,
+            locale:
+                Provider.of<MyLocalizationController>(context, listen: false)
+                    .getLocale,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             debugShowCheckedModeBanner: false,

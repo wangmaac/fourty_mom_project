@@ -2,5 +2,8 @@
   "appTitle": "Heroes of Computer Science",
   "intro" : "intro",
   "write" : "write",
-  "statistics" : "statistics"
+  "statistics" : "statistics",
+  "hello" : "What's up",
+  "korean" : "Korean",
+  "english" : "English"
 }

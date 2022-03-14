@@ -28,42 +28,29 @@ class EntirePage extends StatelessWidget {
               ),
             ),
             /*Text(context.watch<RWLController>().getRWL.toString()),*/
-            Text('Reading'),
-            Text('title\n'),
-            Text('Watching'),
-            Text('title\n'),
-            Text('Listening'),
-            Text('title'),
-            Text('Reading'),
-            Text('title\n'),
-            Text('Watching'),
-            Text('title\n'),
-            Text('Listening'),
-            Text('title'),
-            Text('Reading'),
-            Text('title\n'),
-            Text('Watching'),
-            Text('title\n'),
-            Text('Listening'),
-            Text('title'),
-            Text('Reading'),
-            Text('title\n'),
-            Text('Watching'),
-            Text('title\n'),
-            Text('Listening'),
-            Text('title'),
-            Text('Reading'),
-            Text('title\n'),
-            Text('Watching'),
-            Text('title\n'),
-            Text('Listening'),
-            Text('title'),
-            Text('Reading'),
-            Text('title\n'),
-            Text('Watching'),
-            Text('title\n'),
-            Text('Listening'),
-            Text('title'),
+            Text(
+              '''         
+<윤채>
+  1. 책읽기
+    -> 08:00~12:00(4시간)
+    -> My friend Author #2
+  2. 영상보기
+    -> 14:00~18:00
+    -> 넷플릭스 스파이더맨, 코코 외 
+            
+<채아>
+  1. 책읽기
+    -> 08:00~12:00(4시간)
+    -> My friend Author #2
+       My friend Author #3
+       My friend Author #4
+       My friend Author #5
+  2. 영상보기
+    -> 14:00~18:00
+    -> 넷플릭스 스파이더맨, 코코 외
+            ''',
+              style: TextStyle(fontSize: 20),
+            ),
           ],
         ),
       ),
