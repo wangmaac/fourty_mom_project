@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import '../utilities/date_format.dart';
-import '../utilities/logger.dart';
 
 class FirebaseMethod {
   late FirebaseFirestore _firebaseFirestore;
@@ -41,28 +40,28 @@ class FirebaseMethod {
   Future setFirestoreReading(String content, DateTime targetDate) async {
     await _firebaseFirestore
         .collection('Reading')
-        .doc(normalFormat.format(targetDate))
+        .doc(normalFormat.format(targetDate) + _user.uid)
         .set({'user': _user.uid, 'content': content});
   }
 
   Future setFirestoreWatching(String content, DateTime targetDate) async {
     await _firebaseFirestore
         .collection('Watching')
-        .doc(normalFormat.format(targetDate))
+        .doc(normalFormat.format(targetDate) + _user.uid)
         .set({'user': _user.uid, 'content': content});
   }
 
   Future setFirestoreListening(String content, DateTime targetDate) async {
     await _firebaseFirestore
         .collection('Listening')
-        .doc(normalFormat.format(targetDate))
+        .doc(normalFormat.format(targetDate) + _user.uid)
         .set({'user': _user.uid, 'content': content});
   }
 
   void getFirestoreReading() async {
-    var doc =
+    /*var doc =
         await _firebaseFirestore.collection('Reading').doc('20220311').get();
     var content = doc.get('content');
-    logger.d(content.toString());
+    logger.d(content.toString());*/
   }
 }

@@ -69,7 +69,7 @@ class _WritePageState extends State<WritePage> {
           isDense: true,
           itemWidth: 200,
           itemTextstyle: const TextStyle(
-              fontSize: 14, fontWeight: FontWeight.w400, color: Colors.black),
+              fontSize: 16, fontWeight: FontWeight.w400, color: Colors.white),
           boxTextstyle: const TextStyle(
               fontSize: 14, fontWeight: FontWeight.w400, color: Colors.black),
           boxPadding: const EdgeInsets.fromLTRB(13, 12, 13, 12),
@@ -108,7 +108,7 @@ class _WritePageState extends State<WritePage> {
                 side: const BorderSide(width: 1.0, color: Colors.black),
                 backgroundColor: Colors.black),
             onPressed: () {
-              confirm();
+              confirmSave();
             },
             child: const SizedBox(
               child: Align(
@@ -133,7 +133,7 @@ class _WritePageState extends State<WritePage> {
     });
   }
 
-  Future confirm() async {
+  Future confirmSave() async {
     if (_textEditingController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('please write contents'),
@@ -147,21 +147,36 @@ class _WritePageState extends State<WritePage> {
       ));
       FocusScope.of(context).requestFocus(_textFocus);
     } else {
+      loadingAlertDialog();
       await _firebaseMethod.setFirestoreUser();
       if (_selectedTest['no'] == 1) {
         await _firebaseMethod.setFirestoreReading(_textEditingController.text,
             context.read<DateController>().getSelectDate);
         _textEditingController.clear();
+        Navigator.of(context).pop();
       } else if (_selectedTest['no'] == 2) {
         await _firebaseMethod.setFirestoreWatching(_textEditingController.text,
             context.read<DateController>().getSelectDate);
         _textEditingController.clear();
+        Navigator.of(context).pop();
       } else {
         await _firebaseMethod.setFirestoreListening(_textEditingController.text,
             context.read<DateController>().getSelectDate);
         _textEditingController.clear();
+        Navigator.of(context).pop();
       }
     }
-    _firebaseMethod.getFirestoreReading();
+    //_firebaseMethod.getFirestoreReading();
+  }
+
+  void loadingAlertDialog() {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Text('작성한 내용을 저장하고있습니다.'),
+          );
+        });
   }
 }
