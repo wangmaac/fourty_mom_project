@@ -115,7 +115,8 @@ class _DrawerPageState extends State<DrawerPage> {
                               Container(
                                 width: 100,
                                 alignment: Alignment.centerLeft,
-                                child: Text(AppLocalizations.of(context)!.english),
+                                child:
+                                    Text(AppLocalizations.of(context)!.english),
                               ),
                             ],
                           ),
@@ -158,7 +159,7 @@ class _DrawerPageState extends State<DrawerPage> {
             actions: [
               OutlinedButton(
                 child: const Text(
-                  'yes',
+                  'YES',
                   style: TextStyle(color: Colors.black),
                 ),
                 onPressed: () {
@@ -170,7 +171,7 @@ class _DrawerPageState extends State<DrawerPage> {
               ),
               OutlinedButton(
                 child: const Text(
-                  'no',
+                  'NO',
                   style: TextStyle(color: Colors.black),
                 ),
                 onPressed: () => Navigator.of(context).pop(),

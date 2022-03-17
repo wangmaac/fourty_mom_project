@@ -37,25 +37,28 @@ class FirebaseMethod {
         .set({'mail': '${_user.email}'});
   }
 
-  Future setFirestoreReading(String content, DateTime targetDate) async {
+  Future setFirestoreReading(
+      String content, DateTime targetDate, int wholeDuration) async {
     await _firebaseFirestore
         .collection('Reading')
         .doc(normalFormat.format(targetDate) + _user.uid)
-        .set({'user': _user.uid, 'content': content});
+        .set({'user': _user.uid, 'content': content, 'minutes': wholeDuration});
   }
 
-  Future setFirestoreWatching(String content, DateTime targetDate) async {
+  Future setFirestoreWatching(
+      String content, DateTime targetDate, int wholeDuration) async {
     await _firebaseFirestore
         .collection('Watching')
         .doc(normalFormat.format(targetDate) + _user.uid)
-        .set({'user': _user.uid, 'content': content});
+        .set({'user': _user.uid, 'content': content, 'minutes': wholeDuration});
   }
 
-  Future setFirestoreListening(String content, DateTime targetDate) async {
+  Future setFirestoreListening(
+      String content, DateTime targetDate, int wholeDuration) async {
     await _firebaseFirestore
         .collection('Listening')
         .doc(normalFormat.format(targetDate) + _user.uid)
-        .set({'user': _user.uid, 'content': content});
+        .set({'user': _user.uid, 'content': content, 'minutes': wholeDuration});
   }
 
   void getFirestoreReading() async {

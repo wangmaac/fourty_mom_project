@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-//import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fourty_mom_project/classes/facebook_login_class.dart';
 import 'package:fourty_mom_project/classes/firebase_class.dart';
 import 'package:fourty_mom_project/classes/google_login_class.dart';
@@ -19,6 +20,23 @@ class _LoginPageState extends State<LoginPage> {
   late GoogleMethod _googleMethod;
   late FaceBookMethod _faceBookMethod;
   late FirebaseMethod _firebaseMethod;
+  late bool _clicked;
+
+  final List<BoxShadow> effectShadow = [
+    BoxShadow(
+        offset: Offset(16, 16),
+        color: Colors.black38,
+        blurRadius: 16,
+        spreadRadius: 2),
+    BoxShadow(
+      offset: Offset(-16, -16),
+      blurRadius: 16,
+      spreadRadius: 2,
+      color: Colors.white,
+    )
+  ];
+
+  final List<BoxShadow> unEffectShadow = [];
 
   @override
   void initState() {
@@ -34,17 +52,15 @@ class _LoginPageState extends State<LoginPage> {
         _initialized = init;
       });
     });
+    _clicked = false;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    //logger.d(context.read<MyLocalizationController>().locale);
-/*    context.watch<MyLocalizationController>().setLocal('en');
-    logger.d('next' + context.read<MyLocalizationController>().local);*/
-
     if (_initialized) {
       return Scaffold(
+        backgroundColor: Colors.grey.shade300,
         body: StreamBuilder(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
@@ -65,12 +81,62 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       child: const Text('facebook login button'),
                     ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 100,
+                      child: Center(
+                          child: FaIcon(
+                        FontAwesomeIcons.google,
+                        color: Colors.white,
+                        size: 45,
+                      )),
+                      decoration: BoxDecoration(
+                          color: Colors.red,
+                          boxShadow: [
+                            BoxShadow(
+                                offset: Offset(16, 16),
+                                color: Colors.black38,
+                                blurRadius: 16,
+                                spreadRadius: 2),
+                            BoxShadow(
+                              offset: Offset(-16, -16),
+                              blurRadius: 16,
+                              spreadRadius: 2,
+                              color: Colors.white,
+                            )
+                          ],
+                          borderRadius: BorderRadius.circular(16)),
+                    ),
+                    SizedBox(height: 40),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _clicked = !_clicked;
+                        });
+                      },
+                      child: AnimatedContainer(
+                        duration: Duration(milliseconds: 500),
+                        width: 100,
+                        height: 100,
+                        child: Center(
+                            child: FaIcon(
+                          FontAwesomeIcons.facebookF,
+                          color: Colors.white,
+                          size: 45,
+                        )),
+                        decoration: BoxDecoration(
+                            color: Colors.blue,
+                            boxShadow: _clicked ? unEffectShadow : effectShadow,
+                            borderRadius: BorderRadius.circular(16)),
+                      ),
+                    )
                   ],
                 ),
               );
             } else {
-              //logger.d(AppLocalizations.of(context)!.appTitle);
-              //logger.d(AppLocalizations.of(context)!.localeName);
               return const InitPage();
             }
           },
